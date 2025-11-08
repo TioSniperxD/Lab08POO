@@ -11,13 +11,30 @@ public class Empleado extends Persona{
         this.accionesRealizadas = new ArrayList<>();
     }
 
-    //Método para agregar
+    //Método para verificar si una acción es válida
+     public boolean verificarAccion(String accionRealizada) {
+        if (accionRealizada == null) return false;
+
+        accionRealizada = accionRealizada.trim();
+        if (accionRealizada.isEmpty()) return false;
+
+        // Verifica que contenga: letras, espacios, guiones y tildes
+        return accionRealizada.matches("[A-Za-zÁÉÍÓÚáéíóúñÑ\\- ]+");
+    }
+
+    //Método para agregar acción (usa verificarAccion)
     public void agregarAccion(String accionRealizada) {
-        if(accionRealizada != null && accionRealizada.matches("[A-Za-z-ÁÉÍÓÚáéíóú\\- ]+")){
-            accionesRealizadas.add(accionRealizada);
-        }
-        else {
-            System.out.println("Acción no válida.");
+        if (verificarAccion(accionRealizada)) {
+            accionRealizada = accionRealizada.trim();
+
+            if (!accionesRealizadas.contains(accionRealizada)) {
+                accionesRealizadas.add(accionRealizada);
+                System.out.println("Acción agregada: " + accionRealizada);
+            } else {
+                System.out.println("Esta acción ya fue registrada: " + accionRealizada);
+            }
+        } else {
+            System.out.println("Acción no válida: " + accionRealizada);
         }
     }
 
