@@ -8,6 +8,7 @@ public class Transaccion {
     protected String fecha;
     protected String hora;
 
+
     // Atributos para el constructor simple que usa Banco
     protected String idCuenta; 
     protected String tipo;     

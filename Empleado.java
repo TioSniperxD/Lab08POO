@@ -9,7 +9,6 @@ public class Empleado extends Persona{
         super(nombre, id, direccion);
         this.accionesRealizadas = new ArrayList<>();
     }
-
     //Método para agregar
     public void agregarAccion(String accionRealizada) {
         accionesRealizadas.add(accionRealizada);
