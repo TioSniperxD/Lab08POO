@@ -1,121 +1,82 @@
-import java.util.*;
+import java.util.ArrayList;
 
 public class Empleado extends Persona {
-
-    // ATRIBUTOS
-    private List<String> accionesRealizadas;
-    private boolean datosValidos;
-
+    // Atributo
+    private ArrayList<String> acciones;
     // Constructor
     public Empleado(String nombre, String id, String direccion) {
         super(nombre, id, direccion);
-        this.accionesRealizadas = new ArrayList<>();
-        datosValidos = validarDatos();
+        acciones = new ArrayList<>();
+    }
+    // GETTERS Y SETTERS
+     // Getter de acciones (cantidad)
+    public int getCantidadAcciones() {
+        return acciones.size();
     }
 
-    // MÉTODOS (getters y setters)
-    public boolean getDatosValidos() {
-        return datosValidos;
+    // Getter del arreglo completo
+    public ArrayList<String> getAcciones() {
+        return acciones;
     }
 
-    public void agregarAccion(String accionRealizada) {
-        accionesRealizadas.add(accionRealizada);
+    // Setter nombre (aplica validación de Persona)
+    public boolean setNombreSeguro(String nuevoNombre) {
+        this.nombre = nuevoNombre;
+        if (!validarNombre()) {
+            System.err.println("Nombre no válido.");
+            return false;
+        }
+        return true;
     }
 
+    // Setter ID (aplica validación de Persona)
+    public boolean setIdSeguro(String nuevoId) {
+        this.id = nuevoId;
+        if (!validarId()) {
+            System.err.println("ID no válido.");
+            return false;
+        }
+        return true;
+    }
+
+    // Setter dirección (aplica validación de Persona)
+    public boolean setDireccionSeguro(String nuevaDir) {
+        this.direccion = nuevaDir;
+        if (!validarDireccion()) {
+            System.err.println("Dirección no válida.");
+            return false;
+        }
+        return true;
+    }
+
+
+    // MÉTODOS
+
+
+    // Guarda acción realizada
+    public void agregarAccion(String accion) {
+        if (accion == null || accion.trim().isEmpty())
+            System.err.println("Acción inválida.");
+        acciones.add(accion);
+    }
+
+    // Muestra acciones registradas
     public void mostrarAcciones() {
-        if (accionesRealizadas.isEmpty()) System.out.println("No se registraron acciones.");
-        else {
-            System.out.println("Acciones realizadas:");
-            for (int i = 0; i < accionesRealizadas.size(); i++) {
-                System.out.println((i + 1) + ". " + accionesRealizadas.get(i));
-            }
+        if (acciones.isEmpty()) 
+            System.out.println("No tiene acciones registradas.");
+
+        for (int i = 0; i < acciones.size(); i++) {
+            System.out.println((i + 1) + ". " + acciones.get(i));
         }
     }
 
-    // Mostrar información
     @Override
     public void mostrarInformacion() {
-        super.mostrarInformacion();
-        mostrarAcciones();
+        System.out.println(this.toString());
     }
-
-    // VALIDACIONES INTERNAS
-    private boolean validarDatos() {
-        if (!validarNombre(this.nombre)) 
-            return false;
-        if (!validarId(this.id)) 
-            return false;
-        if (!validarDireccion(this.direccion)) 
-            return false;
-        return true;
-    }
-
-    private boolean validarNombre(String n) {
-        if (n == null) {
-            System.err.println("Error: el nombre no puede ser nulo.");
-            return false;
-        }
-        n = n.trim();
-        if (n.equals("")) {
-            System.err.println("Error: el nombre no puede estar vacío.");
-            return false;
-        }
-        int letras = 0;
-        for (int i = 0; i < n.length(); i++) {
-            char c = n.charAt(i);
-            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) letras++;
-            else if (c == ' ') {}
-            else {
-                System.err.println("Error: el nombre solo puede contener letras y espacios.");
-                return false;
-            }
-        }
-        if (letras == 0) {
-            System.err.println("Error: el nombre no puede ser solo espacios.");
-            return false;
-        }
-        return true;
-    }
-
-    private boolean validarId(String id) {
-        if (id == null) {
-            System.err.println("Error: el ID no puede ser nulo.");
-            return false;
-        }
-        id = id.trim();
-        if (id.equals("")) {
-            System.err.println("Error: el ID no puede estar vacío.");
-            return false;
-        }
-        for (int i = 0; i < id.length(); i++) {
-            char c = id.charAt(i);
-            if (c == ' ') {
-                System.err.println("Error: el ID no puede contener espacios.");
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean validarDireccion(String d) {
-        if (d == null) {
-            System.err.println("Error: la dirección no puede ser nula.");
-            return false;
-        }
-        d = d.trim();
-        if (d.equals("")) {
-            System.err.println("Error: la dirección no puede estar vacía.");
-            return false;
-        }
-        return true;
-    }
-
-    // toString SIEMPRE AL FINAL
+    // toString
     @Override
     public String toString() {
-        return "Empleado -> Nombre: " + nombre +
-               ", ID: " + id +
-               ", Dirección: " + direccion +
-               ", Acciones registradas: " + accionesRealizadas.size();
+        return super.toString() + " | Acciones: " + acciones.size();
     }
 }
