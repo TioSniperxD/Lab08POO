@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 //Hereda Empleado de la clase Persona

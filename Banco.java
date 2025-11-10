@@ -2,7 +2,6 @@
 import java.util.ArrayList;
 
 public class Banco {
-
     // Atributos (agregación con otras clases)
     private ArrayList<Cliente> listaClientes;
     private ArrayList<Empleado> listaEmpleados;

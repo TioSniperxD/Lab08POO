@@ -1,4 +1,3 @@
-
 // Esta clase sirve como "puente" para registrar qué cliente es dueño de qué cuenta
 public class ClienteCuenta {
     private Cliente cliente;

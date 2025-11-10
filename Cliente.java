@@ -2,7 +2,6 @@
 public class Cliente extends Persona {
     //ATRIBUTOS
     private Cuenta cuenta; 
-
     
     //Constructor sobrecargado
     public Cliente (String nombre, String id, String direccion, Cuenta cuenta){

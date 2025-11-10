@@ -1,5 +1,4 @@
 
-
 public class Persona {
     //Atributos
     protected String nombre;

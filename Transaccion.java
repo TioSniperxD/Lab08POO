@@ -1,4 +1,3 @@
-
 public class Transaccion {
     //Atributos protegidos
     protected String idCliente;

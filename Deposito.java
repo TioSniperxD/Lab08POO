@@ -1,4 +1,3 @@
-
 //Hereda de Transaccion
 public class Deposito extends Transaccion{
 

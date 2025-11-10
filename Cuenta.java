@@ -1,6 +1,6 @@
 import java.util.*;
-
 public class Cuenta {
+    
     //Atributos
     private String idCuenta;
     private Double saldo;

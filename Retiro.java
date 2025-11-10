@@ -1,4 +1,3 @@
-
 //Hereda de Transaccion
 public class Retiro extends Transaccion{
 
