@@ -52,7 +52,6 @@ public class Empleado extends Persona {
 
     // MÉTODOS
 
-
     // Guarda acción realizada
     public void agregarAccion(String accion) {
         if (accion == null || accion.trim().isEmpty())

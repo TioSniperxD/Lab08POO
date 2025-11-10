@@ -11,6 +11,17 @@ public class Persona {
     }
 
     // Setter y Getter
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -21,10 +32,6 @@ public class Persona {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
-
-    public boolean getDatosValidos() {
-        return validarNombre() && validarId() && validarDireccion();
     }
 
     // MÉTODOS
@@ -85,7 +92,9 @@ public class Persona {
         }
         return true;
     }
-
+    public boolean validarDatos() {
+        return validarNombre() && validarId() && validarDireccion();
+    }
 
     @Override
     public String toString() {

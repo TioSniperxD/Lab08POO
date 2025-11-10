@@ -12,12 +12,11 @@ public class Cliente extends Persona {
         this.cuenta = cuenta;
     }
 
-    // Getter de cuenta
+    //Getter y setter
     public Cuenta getCuenta() {
         return cuenta;
     }
 
-    // Setter directo (cuando ya está validado afuera)
     public void setCuenta(Cuenta cuenta) {
         this.cuenta = cuenta;
     }
