@@ -1,4 +1,3 @@
-
 public class Cliente extends Persona {
     //ATRIBUTOS
     private Cuenta cuenta; 
