@@ -6,6 +6,10 @@ public class UsuarioEmpleado extends Usuario {
         super(nombreUsuario, contraseña, "empleado");
         this.idEmpleado = idEmpleado;
     }
+    public UsuarioEmpleado(String nombreUsuario, String contraseña, boolean activo) {
+        super(nombreUsuario, contraseña, "Empleado");
+        this.activo = activo;
+}
     // Getter y Setter
     public String getIdEmpleado() { 
         return idEmpleado; 

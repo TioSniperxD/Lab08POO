@@ -8,6 +8,10 @@ public class UsuarioCliente extends Usuario {
         super(nombreUsuario, contraseña, "cliente");
         this.idCliente = idCliente;
     }
+    public UsuarioCliente(String nombreUsuario, String contraseña, boolean activo) {
+        super(nombreUsuario, contraseña, "Cliente");
+        this.activo = activo;
+    }
 
     // Getter y Setter
     public String getIdCliente() { 

@@ -69,6 +69,10 @@ public class Empleado extends Persona {
         }
     }
 
+    public boolean validarDatos() {
+        return validarNombre() && validarId() && validarDireccion();
+    }
+
     @Override
     public void mostrarInformacion() {
         System.out.println(this.toString());

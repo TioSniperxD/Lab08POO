@@ -50,6 +50,70 @@ public class Usuario {
         return true;
     }
 
+    // Valida nombreUsuario (solo letras y números)
+    public boolean validarNombreUsuario() {
+        if (nombreUsuario == null || nombreUsuario.trim().isEmpty()) {
+            System.err.println("Usuario vacío.");
+            return false;
+        }
+
+        if (nombreUsuario.length() < 3) {
+            System.err.println("El usuario debe tener mínimo 3 caracteres.");
+            return false;
+        }
+
+        for (int i = 0; i < nombreUsuario.length(); i++) {
+            char c = nombreUsuario.charAt(i);
+            boolean esLetra = (c >= 'A' && c <= 'Z') ||
+                              (c >= 'a' && c <= 'z');
+            boolean esNumero = (c >= '0' && c <= '9');
+
+            if (!esLetra && !esNumero) {
+                System.err.println("El usuario solo puede contener letras o números.");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    // Validar contraseña (mínimo 4 caracteres)
+    public boolean validarContraseña() {
+        if (contraseña == null || contraseña.trim().isEmpty()) {
+            System.err.println("Contraseña vacía.");
+            return false;
+        }
+        if (contraseña.length() < 4) {
+            System.err.println("La contraseña debe tener mínimo 4 caracteres.");
+            return false;
+        }
+        return true;
+    }
+
+    // Validar tipo (manual)
+    public boolean validarTipo() {
+        if (tipoUsuario == null) {
+            System.err.println("Tipo de usuario nulo.");
+            return false;
+        }
+
+        if (!tipoUsuario.equalsIgnoreCase("Administrador") &&
+            !tipoUsuario.equalsIgnoreCase("Empleado") &&
+            !tipoUsuario.equalsIgnoreCase("Cliente")) {
+
+            System.err.println("Tipo de usuario inválido.");
+            return false;
+        }
+
+        return true;
+    }
+
+    // Validar todos los datos
+    public boolean validarDatos() {
+        return validarNombreUsuario() && validarContraseña() && validarTipo();
+    }
+
+
     // Muestra los datos de Usuario
     public void mostrarDatos() {
         System.out.println(toString());

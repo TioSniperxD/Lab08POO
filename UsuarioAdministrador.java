@@ -1,8 +1,15 @@
 public class UsuarioAdministrador extends Usuario {
-    // Constructor
-    public UsuarioAdministrador(String nombreUsuario, String contraseña) {
-        super(nombreUsuario, contraseña, "administrador");
+
+    public UsuarioAdministrador(String nombreUsuario, String contraseña, String tipoUsuario) {
+        super(nombreUsuario, contraseña, tipoUsuario);
     }
+
+    // Constructor simplificado que asigna el tipo automáticamente
+    public UsuarioAdministrador(String nombreUsuario, String contraseña, boolean activo) {
+        super(nombreUsuario, contraseña, "Administrador");
+        this.activo = activo;
+    }
+
 
     // MÉTODOS
     // Mostrar los permisos para Usuario Administrador

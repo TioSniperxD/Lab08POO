@@ -92,9 +92,7 @@ public class Persona {
         }
         return true;
     }
-    public boolean validarDatos() {
-        return validarNombre() && validarId() && validarDireccion();
-    }
+    
 
     @Override
     public String toString() {

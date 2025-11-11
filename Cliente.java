@@ -56,6 +56,10 @@ public class Cliente extends Persona {
         return cuenta != null;
     }
 
+    public boolean validarDatos() {
+        return validarNombre() && validarId() && validarDireccion();
+    }
+
     @Override
     public void mostrarInformacion() {
         System.out.println(this.toString());
