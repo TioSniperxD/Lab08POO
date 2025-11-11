@@ -9,12 +9,10 @@ public class Empleado extends Persona {
         acciones = new ArrayList<>();
     }
     // GETTERS Y SETTERS
-     // Getter de acciones (cantidad)
     public int getCantidadAcciones() {
         return acciones.size();
     }
 
-    // Getter del arreglo completo
     public ArrayList<String> getAcciones() {
         return acciones;
     }
@@ -48,7 +46,6 @@ public class Empleado extends Persona {
         }
         return true;
     }
-
 
     // MÉTODOS
 

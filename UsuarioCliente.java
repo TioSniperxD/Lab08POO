@@ -1,39 +1,45 @@
 public class UsuarioCliente extends Usuario {
-
-    // Atributos
+    //ATRIBUTOS
+    private Cliente cliente;
     private String idCliente;
 
-    // Constructor
+    // Constructor con objeto Cliente
+    public UsuarioCliente(String nombreUsuario, String contraseña, Cliente cliente) {
+        super(nombreUsuario, contraseña, "cliente");
+        this.cliente = cliente;
+        this.idCliente = cliente != null ? cliente.getId() : null;
+    }
+
+    // Constructor sobrecargado con ID
     public UsuarioCliente(String nombreUsuario, String contraseña, String idCliente) {
         super(nombreUsuario, contraseña, "cliente");
         this.idCliente = idCliente;
+        this.cliente = null;
     }
-    public UsuarioCliente(String nombreUsuario, String contraseña, boolean activo) {
-        super(nombreUsuario, contraseña, "Cliente");
-        this.activo = activo;
+    //Getter y Setter
+    public Cliente getCliente() { return cliente; }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+        if (cliente != null) this.idCliente = cliente.getId();
     }
 
-    // Getter y Setter
-    public String getIdCliente() { 
-        return idCliente; 
-    }
-    public void setIdCliente(String idCliente) { 
-        this.idCliente = idCliente; 
+    public String getIdCliente() {
+        return idCliente != null ? idCliente :
+               (cliente != null ? cliente.getId() : "N/A");
     }
 
-    // MÉTODOS
-    // Mostrar los permisos para el usuario Cliente
     @Override
     public void mostrarPermisos() {
         System.out.println("- Consultar saldo");
         System.out.println("- Ver historial de movimientos");
     }
-
-    //toString
+    // toString
     @Override
     public String toString() {
-        return "UsuarioCliente: " + nombreUsuario + 
-        " | ID Cliente: " + idCliente + 
-        " | Estado: " + (activo ? "Activo" : "Inactivo");
+        return "UsuarioCliente -> Usuario: " + nombreUsuario +
+               " | Cliente: " + (cliente != null ? cliente.getNombre() : "Sin asignar") +
+               " | ID Cliente: " + getIdCliente() +
+               " | Estado: " + (activo ? "Activo" : "Inactivo");
     }
 }

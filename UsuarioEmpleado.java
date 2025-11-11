@@ -1,24 +1,37 @@
 public class UsuarioEmpleado extends Usuario {
-    // Atributo
+    // Atributos
     private String idEmpleado;
-    // Constructor
+    private Empleado empleado;
+
+    // Constructor con objeto Empleado 
+    public UsuarioEmpleado(String nombreUsuario, String contraseña, Empleado empleado) {
+        super(nombreUsuario, contraseña, "empleado");
+        this.empleado = empleado;
+        this.idEmpleado = empleado != null ? empleado.getId() : "N/A";
+    }
+
+    // Constructor sobrecargado con iD
     public UsuarioEmpleado(String nombreUsuario, String contraseña, String idEmpleado) {
         super(nombreUsuario, contraseña, "empleado");
         this.idEmpleado = idEmpleado;
     }
-    public UsuarioEmpleado(String nombreUsuario, String contraseña, boolean activo) {
-        super(nombreUsuario, contraseña, "Empleado");
-        this.activo = activo;
-}
-    // Getter y Setter
-    public String getIdEmpleado() { 
-        return idEmpleado; 
+
+    // Getters y setters
+    public String getIdEmpleado() {
+        return idEmpleado != null ? idEmpleado :
+               (empleado != null ? empleado.getId() : "N/A");
     }
-    public void setIdEmpleado(String idEmpleado) { 
-        this.idEmpleado = idEmpleado; 
+
+    public Empleado getEmpleado() {
+        return empleado;
     }
-    // MÉTODOS
-    // Mostrar los permisos para Usuario Empleado
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+        if (empleado != null)
+            this.idEmpleado = empleado.getId();
+    }
+
     @Override
     public void mostrarPermisos() {
         System.out.println("- Registrar clientes");
@@ -27,12 +40,12 @@ public class UsuarioEmpleado extends Usuario {
         System.out.println("- Realizar retiros");
         System.out.println("- Ver transacciones");
     }
-
-    // toString
+    //toString
     @Override
     public String toString() {
-        return "UsuarioEmpleado: " + nombreUsuario + 
-        " | ID Empleado: " + idEmpleado + 
-        " | Estado: " + (activo ? "Activo" : "Inactivo");
+        return "UsuarioEmpleado -> Usuario: " + nombreUsuario +
+               " | Empleado: " + (empleado != null ? empleado.getNombre() : "Sin asignar") +
+               " | ID Empleado: " + getIdEmpleado() +
+               " | Estado: " + (activo ? "Activo" : "Inactivo");
     }
 }

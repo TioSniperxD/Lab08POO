@@ -1,23 +1,31 @@
 import java.util.Date;
 
 public class Transaccion {
-    //Atributos
+    // Atributos
     protected String idCliente;
     protected String idCuenta;
     protected double monto;
     protected String tipo;
     protected String fecha;
     protected Cuenta cuenta;
+    protected String idEmpleado; // 🔹 Nuevo atributo opcional
+
     // Constructor
-    public Transaccion(String idCliente, String idCuenta, double monto, String tipo) {
+    public Transaccion(String idCliente, String idCuenta, double monto, String tipo, String idEmpleado) {
         this.idCliente = idCliente;
         this.idCuenta = idCuenta;
         this.monto = monto;
         this.tipo = tipo;
         this.fecha = generarFecha();
         this.cuenta = null;
+        this.idEmpleado = idEmpleado; // 🔹 Se registra quién realizó la transacción
     }
-    //MÉTODOS
+
+    public Transaccion(String idCliente, String idCuenta, double monto, String tipo) {
+    this(idCliente, idCuenta, monto, tipo, "N/A");
+    }
+
+    // MÉTODOS
     // Genera la fecha de la transacción
     private String generarFecha() {
         return new Date().toString().substring(4, 19);
@@ -44,16 +52,22 @@ public class Transaccion {
         return true;
     }
 
-    //Getter
+    // Getters
     public String getIdCuenta() {
         return idCuenta;
     }
-    //toString
+
+    public String getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    // toString
     @Override
     public String toString() {
         return tipo + " | Cliente: " + idCliente +
                " | Cuenta: " + idCuenta +
                " | Monto: " + monto +
+               " | Empleado: " + (idEmpleado.isEmpty() ? "No registrado" : idEmpleado) +
                " | Fecha: " + fecha;
     }
 }

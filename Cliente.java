@@ -64,7 +64,7 @@ public class Cliente extends Persona {
     public void mostrarInformacion() {
         System.out.println(this.toString());
     }
-
+    // toString
     @Override
     public String toString() {
         if (cuenta == null) {

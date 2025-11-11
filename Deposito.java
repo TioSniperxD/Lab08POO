@@ -1,9 +1,15 @@
 public class Deposito extends Transaccion {
 
+    // Constructor
     public Deposito(String idCliente, String idCuenta, double monto) {
         super(idCliente, idCuenta, monto, "Depósito");
     }
 
+    // Constructor sobrecargad
+    public Deposito(String idCliente, String idCuenta, double monto, String idEmpleado) {
+        super(idCliente, idCuenta, monto, "Depósito", idEmpleado);
+    }
+    //MÉTODOS
     // Valida la cuenta
     private boolean cuentaValida(Cuenta cuenta) {
         if (cuenta == null) {
@@ -26,7 +32,7 @@ public class Deposito extends Transaccion {
         aplicarDeposito(cuenta);
         return true;
     }
-
+    //toString
     @Override
     public String toString() {
         return "Depósito -> " + super.toString();

@@ -57,7 +57,7 @@ public class Persona {
         }
         return true;
     }
-
+    // Valida el iD
     public boolean validarId() {
         if (id == null || id.length() < 3) {
             System.err.println("ID inválido.");
@@ -84,21 +84,49 @@ public class Persona {
 
         return true;
     }
-
+    // Valida Dirección
     public boolean validarDireccion() {
-        if (direccion == null || direccion.trim().length() < 3) {
-            System.err.println("Dirección inválida.");
+        if (direccion == null || direccion.trim().isEmpty()) {
+            System.err.println("Dirección vacía.");
+            return false;
+        }
+        if (direccion.length() < 5) {
+            System.err.println("Dirección demasiado corta.");
+            return false;
+        }
+        boolean tieneLetra = false;
+
+        for (int i = 0; i < direccion.length(); i++) {
+            char c = direccion.charAt(i);
+
+            boolean esLetra = (c >= 'A' && c <= 'Z') ||
+                          (c >= 'a' && c <= 'z') ||
+                          (c == 'ñ' || c == 'Ñ') ||
+                          (c == 'á' || c == 'é' || c == 'í' || c == 'ó' || c == 'ú' ||
+                           c == 'Á' || c == 'É' || c == 'Í' || c == 'Ó' || c == 'Ú');
+
+            boolean esNumero = (c >= '0' && c <= '9');
+            boolean esSimboloValido = (c == ' ' || c == '.' || c == '-' || 
+                                   c == '#' || c == '°' || c == ',' || c == 'º');
+
+            if (!(esLetra || esNumero || esSimboloValido)) {
+                System.err.println("Dirección con caracteres inválidos: '" + c + "'");
+                return false;
+            }
+            if (esLetra) tieneLetra = true;
+        }
+        if (!tieneLetra) {
+            System.err.println("La dirección debe contener al menos una letra.");
             return false;
         }
         return true;
     }
-    
 
     @Override
     public String toString() {
         return "Nombre: " + nombre + ", ID: " + id + ", Dirección: " + direccion;
     }
-
+    // toString
     public void mostrarInformacion() {
         System.out.println(this.toString());
     }

@@ -8,7 +8,7 @@ public class Banco {
     private ArrayList<ClienteCuenta> listaClienteCuenta;
     private ArrayList<Transaccion> listaTransacciones;
 
-    //Constructor
+    // Constructor
     public Banco() {
         listaClientes = new ArrayList<>();
         listaEmpleados = new ArrayList<>();
@@ -60,18 +60,17 @@ public class Banco {
 
     // TRANSACCIONES
 
-    public void procesarDeposito(String idCliente, String idCuenta, double monto, String idEmpleado) {
+    public void procesarDeposito(String idCliente, String idCuenta, double monto, Empleado empleadoSesion) {
 
         Cliente cliente = buscarCliente(idCliente);
-        Empleado empleado = buscarEmpleado(idEmpleado);
         Cuenta cuenta = buscarCuentaDeCliente(idCliente, idCuenta);
 
-        if (cliente == null || empleado == null || cuenta == null) {
+        if (cliente == null || empleadoSesion == null || cuenta == null) {
             System.err.println("Datos no válidos para depósito.");
             return;
         }
 
-        Deposito dep = new Deposito(idCliente, idCuenta, monto);
+        Deposito dep = new Deposito(idCliente, idCuenta, monto, empleadoSesion.getId());
 
         if (!dep.procesar(cuenta)) {
             System.err.println("Depósito no realizado.");
@@ -79,23 +78,21 @@ public class Banco {
         }
 
         listaTransacciones.add(dep);
-        empleado.agregarAccion("Depósito de " + monto + " en cuenta " + idCuenta);
-
+        empleadoSesion.agregarAccion("Depósito de " + monto + " en cuenta " + idCuenta);
         System.out.println("Depósito exitoso. Nuevo saldo: " + cuenta.getSaldo());
     }
 
-    public void procesarRetiro(String idCliente, String idCuenta, double monto, String idEmpleado) {
+    public void procesarRetiro(String idCliente, String idCuenta, double monto, Empleado empleadoSesion) {
 
         Cliente cliente = buscarCliente(idCliente);
-        Empleado empleado = buscarEmpleado(idEmpleado);
         Cuenta cuenta = buscarCuentaDeCliente(idCliente, idCuenta);
 
-        if (cliente == null || empleado == null || cuenta == null) {
+        if (cliente == null || empleadoSesion == null || cuenta == null) {
             System.err.println("Datos no válidos para retiro.");
             return;
         }
 
-        Retiro ret = new Retiro(idCliente, idCuenta, monto);
+        Retiro ret = new Retiro(idCliente, idCuenta, monto, empleadoSesion.getId());
 
         if (!ret.procesar(cuenta)) {
             System.err.println("Retiro no realizado.");
@@ -103,8 +100,7 @@ public class Banco {
         }
 
         listaTransacciones.add(ret);
-        empleado.agregarAccion("Retiro de " + monto + " en cuenta " + idCuenta);
-
+        empleadoSesion.agregarAccion("Retiro de " + monto + " en cuenta " + idCuenta);
         System.out.println("Retiro exitoso. Nuevo saldo: " + cuenta.getSaldo());
     }
 
@@ -161,18 +157,100 @@ public class Banco {
     // MOSTRAR LISTAS
 
     public void mostrarClientes() {
-        for (Cliente c : listaClientes) System.out.println(c);
+        if (listaClientes == null || listaClientes.isEmpty()) {
+            System.out.println("No hay clientes registrados.");
+            return;
+        }
+
+        System.out.println("\n=== LISTA DE CLIENTES ===");
+        for (Cliente c : listaClientes) {
+            System.out.println(c);
+        }
     }
 
     public void mostrarEmpleados() {
-        for (Empleado e : listaEmpleados) System.out.println(e);
-    }
+        if (listaEmpleados == null || listaEmpleados.isEmpty()) {
+            System.out.println("No hay empleados registrados.");
+            return;
+        }
 
-    public void mostrarClienteCuentas() {
-        for (ClienteCuenta cc : listaClienteCuenta) System.out.println(cc);
+        System.out.println("\n=== LISTA DE EMPLEADOS ===");
+        for (Empleado e : listaEmpleados) {
+            System.out.println(e);
+        }
     }
 
     public void mostrarTransacciones() {
-        for (Transaccion t : listaTransacciones) System.out.println(t);
+        if (listaTransacciones == null || listaTransacciones.isEmpty()) {
+            System.out.println("No hay transacciones registradas.");
+            return;
+        }
+
+        System.out.println("\n=== HISTORIAL DE TRANSACCIONES ===");
+        for (Transaccion t : listaTransacciones) {
+            System.out.println(t);
+        }
+    }
+
+    // ELIMINAR
+
+    public boolean eliminarCliente(String idCliente) {
+        Cliente c = buscarCliente(idCliente);
+        if (c == null) {
+            System.err.println("Cliente no encontrado.");
+            return false;
+        }
+        listaClientes.remove(c);
+        System.out.println("Cliente eliminado: " + idCliente);
+        return true;
+    }
+
+    public boolean eliminarEmpleado(String idEmpleado) {
+        Empleado e = buscarEmpleado(idEmpleado);
+        if (e == null) {
+            System.err.println("Empleado no encontrado.");
+            return false;
+        }
+        listaEmpleados.remove(e);
+        System.out.println("Empleado eliminado: " + idEmpleado);
+        return true;
+    }
+
+    // MODIFICAR
+
+    public boolean modificarCliente(String idCliente, String nuevoNombre, String nuevaDireccion) {
+        Cliente c = buscarCliente(idCliente);
+        if (c == null) {
+            System.err.println("Cliente no encontrado.");
+            return false;
+        }
+
+        if (nuevoNombre != null && !nuevoNombre.trim().isEmpty()) {
+            c.setNombre(nuevoNombre);
+        }
+        if (nuevaDireccion != null && !nuevaDireccion.trim().isEmpty()) {
+            c.setDireccion(nuevaDireccion);
+        }
+
+        System.out.println("Cliente modificado correctamente: " + c.getId());
+        return true;
+    }
+
+    public boolean modificarEmpleado(String idEmpleado, String nuevoNombre, String nuevaDireccion) {
+        Empleado e = buscarEmpleado(idEmpleado);
+        if (e == null) {
+            System.err.println("Empleado no encontrado.");
+            return false;
+        }
+
+        if (nuevoNombre != null && !nuevoNombre.trim().isEmpty()) {
+            e.setNombre(nuevoNombre);
+        }
+        if (nuevaDireccion != null && !nuevaDireccion.trim().isEmpty()) {
+            e.setDireccion(nuevaDireccion);
+        }
+
+        System.out.println("Empleado modificado correctamente: " + e.getId());
+        return true;
     }
 }

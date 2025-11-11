@@ -50,7 +50,7 @@ public class Usuario {
         return true;
     }
 
-    // Valida nombreUsuario (solo letras y números)
+    // Valida nombreUsuario (solo letras)
     public boolean validarNombreUsuario() {
         if (nombreUsuario == null || nombreUsuario.trim().isEmpty()) {
             System.err.println("Usuario vacío.");
@@ -66,10 +66,9 @@ public class Usuario {
             char c = nombreUsuario.charAt(i);
             boolean esLetra = (c >= 'A' && c <= 'Z') ||
                               (c >= 'a' && c <= 'z');
-            boolean esNumero = (c >= '0' && c <= '9');
 
-            if (!esLetra && !esNumero) {
-                System.err.println("El usuario solo puede contener letras o números.");
+            if (!esLetra ) {
+                System.err.println("El usuario solo puede contener letras");
                 return false;
             }
         }
@@ -90,13 +89,12 @@ public class Usuario {
         return true;
     }
 
-    // Validar tipo (manual)
+    // Validar tipo de usuario
     public boolean validarTipo() {
         if (tipoUsuario == null) {
             System.err.println("Tipo de usuario nulo.");
             return false;
         }
-
         if (!tipoUsuario.equalsIgnoreCase("Administrador") &&
             !tipoUsuario.equalsIgnoreCase("Empleado") &&
             !tipoUsuario.equalsIgnoreCase("Cliente")) {
@@ -104,7 +102,6 @@ public class Usuario {
             System.err.println("Tipo de usuario inválido.");
             return false;
         }
-
         return true;
     }
 
@@ -114,12 +111,11 @@ public class Usuario {
         return true;
     }
 
-
     // Muestra los datos de Usuario
     public void mostrarDatos() {
         System.out.println(toString());
     }
-
+    // Muestra los permisos de Usuario
     public void mostrarPermisos() {
         System.out.println("Sin permisos específicos.");
     }

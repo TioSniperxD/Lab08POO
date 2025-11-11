@@ -36,7 +36,7 @@ public class ClienteCuenta {
         }
         return true;
     }
-
+    // toString 
     @Override
     public String toString() {
         return "Cliente: " + cliente.getNombre() +
