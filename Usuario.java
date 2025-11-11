@@ -110,7 +110,8 @@ public class Usuario {
 
     // Validar todos los datos
     public boolean validarDatos() {
-        return validarNombreUsuario() && validarContraseña() && validarTipo();
+        if(validarNombreUsuario() && validarContraseña() && validarTipo());
+        return true;
     }
 
 
