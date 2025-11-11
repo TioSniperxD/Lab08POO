@@ -5,12 +5,12 @@ public class Persona {
     protected String direccion;
     // Constructor
     public Persona(String nombre, String id, String direccion) {
-        this.nombre = nombre;
-        this.id = id;
-        this.direccion = direccion;
+        setNombre(nombre);
+        setId(id);
+        setDireccion(direccion);
     }
 
-    // Setter y Getter
+    // Métodos getters
     public String getNombre() {
         return nombre;
     }
@@ -22,16 +22,33 @@ public class Persona {
     public String getDireccion() {
         return direccion;
     }
+
+    //Métodos setters
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        if(!validarNombre(nombre)) {
+            throw new IllegalArgumentException("Dato de Nombre inválido.");
+        }
+        else {
+            this.nombre = nombre;
+        }
     }
 
     public void setId(String id) {
-        this.id = id;
+        if(!validarId(id)) {
+            throw new IllegalArgumentException("Dato de ID inválido.");
+        }
+        else {
+            this.id = id;
+        }
     }
 
     public void setDireccion(String direccion) {
-        this.direccion = direccion;
+        if(!validarDireccion(direccion)) {
+            throw new IllegalArgumentException("Dato de Dirección inválida.");
+        }
+        else {
+            this.direccion = direccion;
+        }
     }
 
     // MÉTODOS
