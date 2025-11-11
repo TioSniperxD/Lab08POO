@@ -1,15 +1,15 @@
 public class Cliente extends Persona {
     //Atributo
     private Cuenta cuenta;
-    // Constructor
+    // Constructor (cliente sin cuenta)
     public Cliente(String nombre, String id, String direccion) {
         super(nombre, id, direccion);
         this.cuenta = null;
     }
-    //Constructor Sobrecargado
+    //Constructor (cliente con cuenta)
     public Cliente(String nombre, String id, String direccion, Cuenta cuenta) {
         super(nombre, id, direccion);
-        this.cuenta = cuenta;
+        setCuenta(cuenta);
     }
 
     //Getter y setter
@@ -18,37 +18,10 @@ public class Cliente extends Persona {
     }
 
     public void setCuenta(Cuenta cuenta) {
+        if (cuenta == null) {
+            System.err.println("Advertencia: Se está asignando una cuenta nula al cliente " + getNombre());
+        }
         this.cuenta = cuenta;
-    }
-
-    // Setter seguro para nombre
-    public boolean setNombreSeguro(String nuevoNombre) {
-        this.nombre = nuevoNombre;
-        if (!validarNombre()) {
-            System.err.println("Nombre no válido.");
-            return false;
-        }
-        return true;
-    }
-
-    // Setter seguro para ID
-    public boolean setIdSeguro(String nuevoId) {
-        this.id = nuevoId;
-        if (!validarId()) {
-            System.err.println("ID no válido.");
-            return false;
-        }
-        return true;
-    }
-
-    // Setter seguro para dirección
-    public boolean setDireccionSeguro(String nuevaDir) {
-        this.direccion = nuevaDir;
-        if (!validarDireccion()) {
-            System.err.println("Dirección no válida.");
-            return false;
-        }
-        return true;
     }
 
     // Verifica si tiene cuenta asignada
@@ -64,13 +37,16 @@ public class Cliente extends Persona {
     public void mostrarInformacion() {
         System.out.println(this.toString());
     }
-    // toString
+    
     @Override
     public String toString() {
+        // Llama al toString() de Persona (que da Nombre, ID, Direccion)
+        String infoPersona = super.toString(); 
+        
         if (cuenta == null) {
-            return super.toString() + " | Sin cuenta";
+            return infoPersona + " | Sin cuenta asignada";
         } else {
-            return super.toString() + " | Cuenta: " + cuenta.getIdCuenta();
+            return infoPersona + " | Cuenta: " + cuenta.getIdCuenta();
         }
     }
 }
