@@ -1,28 +1,45 @@
-//Hereda de Transaccion
-public class Retiro extends Transaccion{
+public class Retiro extends Transaccion {
 
-    //Constructor vacío que necesita Banco.java
-    public Retiro() {
-        // Llama al constructor de Transaccion con valores nulos/cero
-        super(null, null, null, 0, null, null, null);
+    // Constructor 
+    public Retiro(String idCliente, String idCuenta, double monto) {
+        super(idCliente, idCuenta, monto, "Retiro");
     }
 
-    //Constructor con empleado
-    public Retiro(String idCliente, String idEmpleado, Cuenta cuenta, double monto, String idTransaccion, String fecha, String hora) {
-        super(idCliente, idEmpleado, cuenta, monto, idTransaccion, fecha, hora);
+    // Constructor sobrecargadp
+    public Retiro(String idCliente, String idCuenta, double monto, String idEmpleado) {
+        super(idCliente, idCuenta, monto, "Retiro", idEmpleado);
     }
-    //Constructor sin empleado
-    public Retiro(String idCliente, String idTransaccion, Cuenta cuenta, double monto, String fecha, String hora) {
-        super(idCliente, idTransaccion, cuenta,monto, fecha, hora);
+    //MÉTODOS
+    // Valifación de cuenta
+    private boolean cuentaValida(Cuenta cuenta) {
+        if (cuenta == null) {
+            System.err.println("Cuenta no válida.");
+            return false;
+        }
+        return true;
     }
-    
-    //Movimiento de retiro
-    @Override
-    public void movimiento(double monto, Cuenta cuenta) {
-        super.movimiento(monto, cuenta);
-        // System.out.println("Retiro realizado con éxito en la cuenta.");
+    // Valida los fondos de una cuenta
+    private boolean fondosSuficientes(Cuenta cuenta) {
+        if (cuenta.getSaldo() < monto) {
+            System.err.println("Saldo insuficiente.");
+            return false;
+        }
+        return true;
     }
-    
+    // Acción aplicar retiro
+    private void aplicarRetiro(Cuenta cuenta) {
+        cuenta.setSaldo(cuenta.getSaldo() - monto);
+        this.cuenta = cuenta;
+    }
+    // Procesa el retiro
+    public boolean procesar(Cuenta cuenta) {
+        if (!datosValidos()) return false;
+        if (!cuentaValida(cuenta)) return false;
+        if (!fondosSuficientes(cuenta)) return false;
+        aplicarRetiro(cuenta);
+        return true;
+    }
+    //toString
     @Override
     public String toString() {
         return "Retiro -> " + super.toString();

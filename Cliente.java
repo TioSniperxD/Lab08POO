@@ -1,35 +1,76 @@
 public class Cliente extends Persona {
-    //ATRIBUTOS
-    private Cuenta cuenta; 
-    
-    //Constructor sobrecargado
-    public Cliente (String nombre, String id, String direccion, Cuenta cuenta){
+    //Atributo
+    private Cuenta cuenta;
+    // Constructor
+    public Cliente(String nombre, String id, String direccion) {
+        super(nombre, id, direccion);
+        this.cuenta = null;
+    }
+    //Constructor Sobrecargado
+    public Cliente(String nombre, String id, String direccion, Cuenta cuenta) {
         super(nombre, id, direccion);
         this.cuenta = cuenta;
     }
 
-    //Constructor que necesita Banco.java para registrar un cliente nuevo
-    public Cliente (String nombre, String id, String direccion) {
-        super(nombre, id, direccion);
-        this.cuenta = null; // Un cliente puede empezar sin cuenta
-    }
-
-    //MÉTODOS (getters y setters)
+    //Getter y setter
     public Cuenta getCuenta() {
-        return this.cuenta;
+        return cuenta;
     }
-    public void setCuenta (Cuenta cuenta) {
+
+    public void setCuenta(Cuenta cuenta) {
         this.cuenta = cuenta;
     }
 
-    //Mostrar información
+    // Setter seguro para nombre
+    public boolean setNombreSeguro(String nuevoNombre) {
+        this.nombre = nuevoNombre;
+        if (!validarNombre()) {
+            System.err.println("Nombre no válido.");
+            return false;
+        }
+        return true;
+    }
+
+    // Setter seguro para ID
+    public boolean setIdSeguro(String nuevoId) {
+        this.id = nuevoId;
+        if (!validarId()) {
+            System.err.println("ID no válido.");
+            return false;
+        }
+        return true;
+    }
+
+    // Setter seguro para dirección
+    public boolean setDireccionSeguro(String nuevaDir) {
+        this.direccion = nuevaDir;
+        if (!validarDireccion()) {
+            System.err.println("Dirección no válida.");
+            return false;
+        }
+        return true;
+    }
+
+    // Verifica si tiene cuenta asignada
+    public boolean tieneCuenta() {
+        return cuenta != null;
+    }
+
+    public boolean validarDatos() {
+        return validarNombre() && validarId() && validarDireccion();
+    }
+
     @Override
-    public void mostrarInformacion () {
-        super.mostrarInformacion();
-        if (cuenta != null) {
-            System.out.println("Cuenta del cliente: " + cuenta);
+    public void mostrarInformacion() {
+        System.out.println(this.toString());
+    }
+    // toString
+    @Override
+    public String toString() {
+        if (cuenta == null) {
+            return super.toString() + " | Sin cuenta";
         } else {
-            System.out.println("El cliente no tiene cuenta asignada.");
+            return super.toString() + " | Cuenta: " + cuenta.getIdCuenta();
         }
     }
 }

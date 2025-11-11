@@ -1,30 +1,40 @@
-//Hereda de Transaccion
-public class Deposito extends Transaccion{
+public class Deposito extends Transaccion {
 
-    //Constructor vacío que necesita Banco.java
-    public Deposito() {
-        // Llama al constructor de Transaccion con valores nulos/cero
-        super(null, null, null, 0, null, null, null); 
+    // Constructor
+    public Deposito(String idCliente, String idCuenta, double monto) {
+        super(idCliente, idCuenta, monto, "Depósito");
     }
 
-    //Constructor con empleado
-    public Deposito(String idCliente, String idEmpleado, Cuenta cuenta, double monto, String idTransaccion, String fecha, String hora) {
-        super(idCliente, idEmpleado, cuenta, monto, idTransaccion, fecha, hora);
+    // Constructor sobrecargad
+    public Deposito(String idCliente, String idCuenta, double monto, String idEmpleado) {
+        super(idCliente, idCuenta, monto, "Depósito", idEmpleado);
     }
-    //Constructor sin empleado
-    public Deposito(String idCliente, String idTransaccion, Cuenta cuenta, double monto, String fecha, String hora) {
-        super(idCliente, idTransaccion, cuenta, monto, fecha, hora);
+    //MÉTODOS
+    // Valida la cuenta
+    private boolean cuentaValida(Cuenta cuenta) {
+        if (cuenta == null) {
+            System.err.println("Cuenta no válida.");
+            return false;
+        }
+        return true;
     }
-    
-    //Movimiento de deposito
-    @Override
-    public void movimiento(double monto, Cuenta cuenta) {
-        super.movimiento(monto, cuenta);
-        // System.out.println("Depósito realizado con éxito en la cuenta.");
+
+    // Aplica el cambio en el saldo
+    private void aplicarDeposito(Cuenta cuenta) {
+        cuenta.setSaldo(cuenta.getSaldo() + monto);
+        this.cuenta = cuenta;
     }
-    
+
+    // Procesa el depósito
+    public boolean procesar(Cuenta cuenta) {
+        if (!datosValidos()) return false;
+        if (!cuentaValida(cuenta)) return false;
+        aplicarDeposito(cuenta);
+        return true;
+    }
+    //toString
     @Override
     public String toString() {
-        return "Deposito -> " + super.toString();
+        return "Depósito -> " + super.toString();
     }
 }

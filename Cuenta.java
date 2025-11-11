@@ -1,26 +1,25 @@
-import java.util.*;
+import java.util.ArrayList;
+
 public class Cuenta {
 
-    //Atributos
     private String idCuenta;
-    private Double saldo;
-    private ArrayList<Transaccion> Transacciones;
+    private double saldo;
+    private ArrayList<Transaccion> transacciones;
 
-    //CONSTRUCTOR original
-    public Cuenta(String numeroCuenta, Double saldo){
-        this.idCuenta = numeroCuenta;
+    // Constructor principal
+    public Cuenta(String idCuenta, double saldo) {
+        this.idCuenta = idCuenta;
         this.saldo = saldo;
-        Transacciones = new ArrayList<>();
+        this.transacciones = new ArrayList<>();
     }
 
-    //Constructor que necesita Banco.java
-    public Cuenta(String numeroCuenta, boolean tipoCuenta) {
-        this.idCuenta = numeroCuenta;
-        this.saldo = 0.0; // Saldo inicial por defecto
-        Transacciones = new ArrayList<>();
+    // Constructor sobrecargado
+    public Cuenta(String idCuenta, boolean tipoCuenta) {
+        this.idCuenta = idCuenta;
+        this.saldo = 0.0;
+        this.transacciones = new ArrayList<>();
     }
 
-    //GET Y SET DE ID Y SALDO
     public String getIdCuenta() {
         return idCuenta;
     }
@@ -29,39 +28,35 @@ public class Cuenta {
         this.idCuenta = idCuenta;
     }
 
-    // Getter simple para que Banco pueda verificar fondos
-    public Double getSaldo() {
-        return this.saldo;
+    public double getSaldo() {
+        return saldo;
     }
 
-    public void setSaldo(Double saldo) {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-    
-    //METODO PARA REGISTRAR UNA TRANSACCION A LA CUENTA
-    public void agregarTransferencia(Transaccion transaccion) {
-        Transacciones.add(transaccion);
+
+    // Método agregarTransaccion 
+    public void agregarTransaccion(Transaccion transaccion) {
+        transacciones.add(transaccion);
     }
-    
-    //MUESTRA EL SALDO
-    public Double mostrarSaldoActual() {
-        return saldo;
-    } 
-    
-    //IMPRIME EL HISTORIAL DE TRANSACCIONES
+
     public void mostrarHistorial() {
-        for(Transaccion objeto : Transacciones){
-            System.out.println(objeto);
+        if (transacciones.isEmpty()) {
+            System.out.println("Sin transacciones registradas.");
+        } else {
+            for (Transaccion t : transacciones) {
+                System.out.println(t);
+            }
         }
     }
-    
-    //TOSTRING
+    //toString
     @Override
     public String toString() {
         return "Cuenta{" +
                 "idCuenta='" + idCuenta + '\'' +
                 ", saldo=" + saldo +
-                ", cantidadTransacciones=" + Transacciones.size() +
+                ", transacciones=" + transacciones.size() +
                 '}';
     }
 }
