@@ -34,11 +34,15 @@ public class UsuarioEmpleado extends Usuario {
 
     @Override
     public void mostrarPermisos() {
-        System.out.println("- Registrar clientes");
-        System.out.println("- Registrar cuentas");
-        System.out.println("- Realizar depósitos");
-        System.out.println("- Realizar retiros");
-        System.out.println("- Ver transacciones");
+        System.out.println("1. Registrar cliente");
+        System.out.println("2. Modificar cliente");
+        System.out.println("3. Eliminar cliente");
+        System.out.println("4. Registrar cuenta a cliente");
+        System.out.println("5. Procesar depósito");
+        System.out.println("6. Procesar retiro");
+        System.out.println("7. Ver historial de una cuenta");
+        System.out.println("8. Ver mis acciones");
+        System.out.println("9. Ver lista de clientes");
     }
     //toString
     @Override

@@ -31,8 +31,9 @@ public class UsuarioCliente extends Usuario {
 
     @Override
     public void mostrarPermisos() {
-        System.out.println("- Consultar saldo");
-        System.out.println("- Ver historial de movimientos");
+        System.out.println("1. Consultar mis datos");
+        System.out.println("2. Consultar mi cuenta y saldo");
+        System.out.println("3. Ver historial de mi cuenta");
     }
     // toString
     @Override
