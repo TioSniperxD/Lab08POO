@@ -1,58 +1,56 @@
 import java.util.Date;
 
 public class Transaccion {
-    // Atributos
     protected String idCliente;
     protected String idCuenta;
+    protected String idEmpleado;
     protected double monto;
     protected String tipo;
     protected String fecha;
     protected Cuenta cuenta;
-    protected String idEmpleado; // 🔹 Nuevo atributo opcional
 
-    // Constructor
+    //CONSTRUCTOR CON EMPLEADO
     public Transaccion(String idCliente, String idCuenta, double monto, String tipo, String idEmpleado) {
         this.idCliente = idCliente;
         this.idCuenta = idCuenta;
+        this.idEmpleado = idEmpleado;
         this.monto = monto;
         this.tipo = tipo;
         this.fecha = generarFecha();
         this.cuenta = null;
-        this.idEmpleado = idEmpleado; // 🔹 Se registra quién realizó la transacción
     }
 
+    //CONSTRUCTOR SIN EMPLEADO
     public Transaccion(String idCliente, String idCuenta, double monto, String tipo) {
-    this(idCliente, idCuenta, monto, tipo, "N/A");
+        this(idCliente, idCuenta, monto, tipo, "N/A");
     }
 
-    // MÉTODOS
-    // Genera la fecha de la transacción
+    //GENERA LA FECHA (Apr 17 12:34:56)
     private String generarFecha() {
         return new Date().toString().substring(4, 19);
     }
 
-    // Valida los datos básicos
+    //VALIDAR DATOS
     public boolean datosValidos() {
         if (monto <= 0) {
-            System.err.println("Monto inválido.");
+            System.out.println("Monto inválido.");
             return false;
         }
         if (idCliente == null || idCliente.trim().isEmpty()) {
-            System.err.println("ID del cliente vacío.");
+            System.out.println("ID del cliente vacío.");
             return false;
         }
         if (idCuenta == null || idCuenta.trim().isEmpty()) {
-            System.err.println("ID de la cuenta vacío.");
+            System.out.println("ID de la cuenta vacío.");
             return false;
         }
         if (tipo == null || tipo.trim().isEmpty()) {
-            System.err.println("Tipo inválido.");
+            System.out.println("Tipo inválido.");
             return false;
         }
         return true;
     }
 
-    // Getters
     public String getIdCuenta() {
         return idCuenta;
     }
@@ -61,7 +59,6 @@ public class Transaccion {
         return idEmpleado;
     }
 
-    // toString
     @Override
     public String toString() {
         return tipo + " | Cliente: " + idCliente +

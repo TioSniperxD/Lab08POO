@@ -6,14 +6,14 @@ public class Cuenta {
     private double saldo;
     private ArrayList<Transaccion> transacciones;
 
-    // Constructor principal
+    //CONSTRUCTOR 
     public Cuenta(String idCuenta, double saldo) {
         this.idCuenta = idCuenta;
         this.saldo = saldo;
         this.transacciones = new ArrayList<>();
     }
 
-    // Constructor sobrecargado
+    //CONSTRUCTOR SOBRECARGADO
     public Cuenta(String idCuenta, boolean tipoCuenta) {
         this.idCuenta = idCuenta;
         this.saldo = 0.0;
@@ -36,11 +36,11 @@ public class Cuenta {
         this.saldo = saldo;
     }
 
-    // Método agregarTransaccion 
+    //AGREGA LA TRANSSACCION
     public void agregarTransaccion(Transaccion transaccion) {
         transacciones.add(transaccion);
     }
-
+    //MUESTRA EL HISTORIAL DE LAS TRANSACCIONES
     public void mostrarHistorial() {
         if (transacciones.isEmpty()) {
             System.out.println("Sin transacciones registradas.");
@@ -50,7 +50,7 @@ public class Cuenta {
             }
         }
     }
-    //toString
+
     @Override
     public String toString() {
         return "Cuenta{" +
