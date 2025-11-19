@@ -140,7 +140,7 @@ public class Banco {
             }
         }
         if(!encontrado) System.out.println("No hay transacciones para esta cuenta");
-        }
+        
     }
     //MOSTRAR EL HISTORIAL DE ACCIONES DEL EMPLEADO
     public void mostrarAccionesEmpleado(String idEmpleado) {
@@ -292,4 +292,5 @@ public class Banco {
         listaTransacciones.add(transaccion);
         empleado.agregarAccion(accion);
     }
+
 }
