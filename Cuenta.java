@@ -20,6 +20,7 @@ public class Cuenta {
         this.transacciones = new ArrayList<>();
     }
 
+    // Getters y Setters
     public String getIdCuenta() {
         return idCuenta;
     }

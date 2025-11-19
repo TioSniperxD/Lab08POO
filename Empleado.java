@@ -30,7 +30,7 @@ public class Empleado extends Persona {
 
     // Muestra acciones registradas
     public void mostrarAcciones() {
-        if (acciones.isEmpty()) {
+        if (acciones.isEmpty()) { // Verifica Si no hay acciones registradas
             System.out.println("No tiene acciones registradas.");
             return; 
         }
@@ -42,7 +42,7 @@ public class Empleado extends Persona {
     }
 
     public boolean validarDatos() {
-        return validarNombre() && validarId() && validarDireccion();
+        return validarNombre() && validarId() && validarDireccion(); // Usa validaciones heredadas de Persona
     }
 
     @Override
@@ -52,6 +52,6 @@ public class Empleado extends Persona {
     // toString
     @Override
     public String toString() {
-        return super.toString() + " | Acciones: " + acciones.size();
+        return super.toString() + " | Acciones: " + acciones.size(); // Agrega el número de acciones al texto base
     }
 }

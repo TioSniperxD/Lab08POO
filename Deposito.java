@@ -20,9 +20,9 @@ public class Deposito extends Transaccion {
     }
 
     //APLICA EL DEPOSITO
-    private void aplicarDeposito(Cuenta cuenta) {
-        cuenta.setSaldo(cuenta.getSaldo() + monto);
-        this.cuenta = cuenta;
+    private void aplicarDeposito(Cuenta cuenta) { // Método principal que ejecuta la operación
+        cuenta.setSaldo(cuenta.getSaldo() + monto); // Suma el monto al saldo actual
+        this.cuenta = cuenta;   // Verifica que la cuenta exista
     }
 
     //APLICA EL DEPOSITO SI TODO ES CORRECTO
@@ -31,7 +31,7 @@ public class Deposito extends Transaccion {
         if (!cuentaValida(cuenta)) return false;
 
         aplicarDeposito(cuenta);
-        return true;
+        return true; // Depósito realizado correctamente
     }
 
     @Override
