@@ -25,7 +25,7 @@ public class Persona {
 
     //Métodos setters
     public void setNombre(String nombre) {
-        if(!validarNombre(nombre)) {
+        if(!validarNombreString(nombre)) {
             throw new IllegalArgumentException("Dato de Nombre inválido.");
         }
         else {
@@ -34,7 +34,7 @@ public class Persona {
     }
 
     public void setId(String id) {
-        if(!validarId(id)) {
+        if(!validarIdString(id)) {
             throw new IllegalArgumentException("Dato de ID inválido.");
         }
         else {
@@ -43,7 +43,7 @@ public class Persona {
     }
 
     public void setDireccion(String direccion) {
-        if(!validarDireccion(direccion)) {
+        if(!validarDireccionString(direccion)) {
             throw new IllegalArgumentException("Dato de Dirección inválida.");
         }
         else {
