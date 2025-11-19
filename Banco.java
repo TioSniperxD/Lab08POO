@@ -282,7 +282,7 @@ public class Banco {
     }
     //VALIDAR LA CUENTA
     private boolean esRegistroCuentaValido(Cliente cliente, Cuenta cuenta) {
-        if (cliente != null && cuenta != null) {
+        if (cliente != null && cuenta != null) { // Verifica que no sea nulo
             return true;
         } else {
             return false;
