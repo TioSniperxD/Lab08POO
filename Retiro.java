@@ -1,45 +1,49 @@
 public class Retiro extends Transaccion {
 
-    // Constructor 
+    //CONSTRUCTOR SIN EMPLEADO 
     public Retiro(String idCliente, String idCuenta, double monto) {
         super(idCliente, idCuenta, monto, "Retiro");
     }
 
-    // Constructor sobrecargadp
+    //CONSTRUCTOR CON EMPLEADO
     public Retiro(String idCliente, String idCuenta, double monto, String idEmpleado) {
         super(idCliente, idCuenta, monto, "Retiro", idEmpleado);
     }
-    //MÉTODOS
-    // Valifación de cuenta
+
+    //VERIFICAR LA CUENTA
     private boolean cuentaValida(Cuenta cuenta) {
         if (cuenta == null) {
-            System.err.println("Cuenta no válida.");
+            System.out.println("Cuenta no válida.");
             return false;
         }
         return true;
     }
-    // Valida los fondos de una cuenta
+
+    //VALIDAR FONDOS
     private boolean fondosSuficientes(Cuenta cuenta) {
         if (cuenta.getSaldo() < monto) {
-            System.err.println("Saldo insuficiente.");
+            System.out.println("Saldo insuficiente.");
             return false;
         }
         return true;
     }
-    // Acción aplicar retiro
+
+    //APLICA EL RETIRO
     private void aplicarRetiro(Cuenta cuenta) {
         cuenta.setSaldo(cuenta.getSaldo() - monto);
         this.cuenta = cuenta;
     }
-    // Procesa el retiro
+
+    //PROCESA EL RETIRO SI TODO ES VALIDO
     public boolean procesar(Cuenta cuenta) {
         if (!datosValidos()) return false;
         if (!cuentaValida(cuenta)) return false;
         if (!fondosSuficientes(cuenta)) return false;
+
         aplicarRetiro(cuenta);
         return true;
     }
-    //toString
+
     @Override
     public String toString() {
         return "Retiro -> " + super.toString();

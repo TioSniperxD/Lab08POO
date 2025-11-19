@@ -1,38 +1,39 @@
 public class Deposito extends Transaccion {
 
-    // Constructor
+    //CONSTRUCTOR SIN EMPLEADO
     public Deposito(String idCliente, String idCuenta, double monto) {
         super(idCliente, idCuenta, monto, "Depósito");
     }
 
-    // Constructor sobrecargad
+    //CONSTRUCTOR CON EMPLEADO
     public Deposito(String idCliente, String idCuenta, double monto, String idEmpleado) {
         super(idCliente, idCuenta, monto, "Depósito", idEmpleado);
     }
-    //MÉTODOS
-    // Valida la cuenta
+
+    //VERIFICA LA CUENTA
     private boolean cuentaValida(Cuenta cuenta) {
         if (cuenta == null) {
-            System.err.println("Cuenta no válida.");
+            System.out.println("Cuenta no válida.");
             return false;
         }
         return true;
     }
 
-    // Aplica el cambio en el saldo
+    //APLICA EL DEPOSITO
     private void aplicarDeposito(Cuenta cuenta) {
         cuenta.setSaldo(cuenta.getSaldo() + monto);
         this.cuenta = cuenta;
     }
 
-    // Procesa el depósito
+    //APLICA EL DEPOSITO SI TODO ES CORRECTO
     public boolean procesar(Cuenta cuenta) {
         if (!datosValidos()) return false;
         if (!cuentaValida(cuenta)) return false;
+
         aplicarDeposito(cuenta);
         return true;
     }
-    //toString
+
     @Override
     public String toString() {
         return "Depósito -> " + super.toString();
