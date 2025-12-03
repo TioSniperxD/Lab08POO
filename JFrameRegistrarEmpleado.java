@@ -8,14 +8,14 @@ import javax.swing.*;
  *
  * @author Jonahtan
  */
-public class JFrameRegistrarCliente extends javax.swing.JFrame {
+public class JFrameRegistrarEmpleado extends javax.swing.JFrame {
 
     private Banco banco;
 
     /**
      * Creates new form JFrameRegistrarCliente
      */
-    public JFrameRegistrarCliente(Banco banco) {
+    public JFrameRegistrarEmpleado(Banco banco) {
         initComponents();
         this.banco = banco;
     }
@@ -48,7 +48,7 @@ public class JFrameRegistrarCliente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Registrar cliente");
+        jLabel1.setText("Registrar empleado");
 
         JTNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,19 +94,14 @@ public class JFrameRegistrarCliente extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(131, 131, 131))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(JBRegistrar)
-                            .addGap(145, 145, 145)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JTDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JTId, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(110, 110, 110))))
+                        .addGap(18, 18, 18)
+                        .addComponent(JBRegistrar))
+                    .addComponent(JTDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTId, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(108, 108, 108))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,8 +162,8 @@ public class JFrameRegistrarCliente extends javax.swing.JFrame {
             }
 
             //SE CREA EL CLIENTE
-            Cliente nuevoCliente = new Cliente(nombre, id, direccion);
-            banco.registrarCliente(nuevoCliente);
+            Empleado nuevoEmpleado = new Empleado(nombre, id, direccion);
+            banco.registrarEmpleado(nuevoEmpleado);
 
             //MUESTRA UN MENSAJE DE EXITO
             javax.swing.JOptionPane.showMessageDialog(this,
@@ -200,7 +195,6 @@ public class JFrameRegistrarCliente extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBRegistrar;

@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 public class Cuenta {
@@ -41,6 +42,7 @@ public class Cuenta {
     public void agregarTransaccion(Transaccion transaccion) {
         transacciones.add(transaccion);
     }
+
     //MUESTRA EL HISTORIAL DE LAS TRANSACCIONES
     public void mostrarHistorial() {
         if (transacciones.isEmpty()) {
@@ -52,12 +54,26 @@ public class Cuenta {
         }
     }
 
+    public String mostrarHistorialString() {
+        if (transacciones.isEmpty()) {
+            return "Sin transacciones registradas.";
+        } else {
+            StringBuilder sb = new StringBuilder();
+
+            for (Transaccion t : transacciones) {
+                sb.append(t.toString()).append("\n");
+            }
+
+            return sb.toString();
+        }
+    }
+
     @Override
     public String toString() {
-        return "Cuenta{" +
-                "idCuenta='" + idCuenta + '\'' +
-                ", saldo=" + saldo +
-                ", transacciones=" + transacciones.size() +
-                '}';
+        return "Cuenta{"
+                + "idCuenta='" + idCuenta + '\''
+                + ", saldo=" + saldo
+                + ", transacciones=" + transacciones.size()
+                + '}';
     }
 }

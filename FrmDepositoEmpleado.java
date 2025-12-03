@@ -7,20 +7,21 @@
  *
  * @author LENOVO
  */
-public class FrmRetiro extends javax.swing.JFrame {
+public class FrmDepositoEmpleado extends javax.swing.JFrame {
 // Variables para recibir los datos
-    private UsuarioCliente cliente;
+    private UsuarioEmpleado empleado;
     private Banco banco;
+    private GestorUsuarios gestor;
     /**
      * Creates new form FrmDeposito
      */
     // CONSTRUCTOR MODIFICADO
-    public FrmRetiro(UsuarioCliente cliente, Banco banco) {
+    public FrmDepositoEmpleado(UsuarioEmpleado empleado, Banco banco, GestorUsuarios gestor) {
         initComponents(); 
         // Guardamos los datos que recibimos
-        this.cliente=cliente;
+        this.empleado=empleado;
         this.banco=banco;
-
+        this.gestor=gestor;
         setLocationRelativeTo(null); // Centrar ventana
     }
 
@@ -38,16 +39,18 @@ public class FrmRetiro extends javax.swing.JFrame {
         txtMonto = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtIdCliente = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtIdCuenta = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel1.setText("Monto a retirar:");
+        jLabel1.setText("Monto a depositar:");
 
         txtMonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,11 +66,12 @@ public class FrmRetiro extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setText("\"RETIRO BANCARIO\"");
+        jLabel2.setText("\"DEPÓSITO BANCARIO\"");
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel3.setText("ID Cliente:");
+
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel4.setText("ID Cuenta:");
 
@@ -76,39 +80,45 @@ public class FrmRetiro extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 49, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(btnConfirmar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(59, 59, 59))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtMonto, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                                .addComponent(jLabel1)
-                                .addComponent(txtIdCuenta)))))
-                .addContainerGap(48, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(100, 100, 100)
+                                    .addComponent(btnConfirmar))
+                                .addComponent(jLabel3)
+                                .addComponent(txtIdCliente)
+                                .addComponent(txtIdCuenta))
+                            .addComponent(jLabel1))
+                        .addGap(47, 47, 47))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(17, 17, 17)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtIdCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnConfirmar)
-                .addGap(23, 23, 23))
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -132,23 +142,24 @@ public class FrmRetiro extends javax.swing.JFrame {
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         try {
             double monto = Double.parseDouble(txtMonto.getText());
-            String idCliente = cliente.getIdCliente();
+            String idCliente = txtIdCliente.getText();
             String idCuenta = txtIdCuenta.getText();
+            String idEmpleado = empleado.getIdEmpleado();
             Cuenta cuentaActual = banco.buscarCuentaDeCliente(idCliente, idCuenta);
 
-            if (cuentaActual.getSaldo()- monto > 0) {
+            if (monto > 0) {
                 // Usamos la clase Deposito que ya tienes en tu paquete
-                Retiro miRetiro = new Retiro(idCliente, idCuenta, monto);
+                Deposito miDeposito = new Deposito(idCliente, idCuenta, monto, idEmpleado);
                 
                 // Ejecutamos
-                boolean exito = miRetiro.procesar(cuentaActual);
+                boolean exito = miDeposito.procesar(cuentaActual);
 
                 if (exito) {
-                    javax.swing.JOptionPane.showMessageDialog(this, "¡Retiro exitoso!\nNuevo Saldo: " + cuentaActual.getSaldo());
+                    javax.swing.JOptionPane.showMessageDialog(this, "¡Depósito exitoso!\nNuevo Saldo: " + cuentaActual.getSaldo());
                     txtMonto.setText(""); 
                     this.dispose(); // Cierra la ventana tras el éxito
                 } else {
-                    javax.swing.JOptionPane.showMessageDialog(this, "Saldo insuficiente o error en la cuenta");
+                    javax.swing.JOptionPane.showMessageDialog(this, "Error al procesar. Verifique la cuenta.");
                 }
             } else {
                 javax.swing.JOptionPane.showMessageDialog(this, "El monto debe ser mayor a 0");
@@ -164,8 +175,10 @@ public class FrmRetiro extends javax.swing.JFrame {
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtIdCliente;
     private javax.swing.JTextField txtIdCuenta;
     private javax.swing.JTextField txtMonto;
     // End of variables declaration//GEN-END:variables
