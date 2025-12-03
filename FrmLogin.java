@@ -219,9 +219,14 @@ public class FrmLogin extends javax.swing.JFrame {
     java.awt.EventQueue.invokeLater(() -> new FrmLogin(banco, gestor).setVisible(true));
 }
     public static void inicializarDatos(Banco banco, GestorUsuarios gestor) {
+        
+    //Crear Cuentas
+    
+    Cuenta cuenta1=new Cuenta("001",2000);
+    Cuenta cuenta2=new Cuenta("002",3000);
     //  Crear Clientes 
-    Cliente c1 = new Cliente("Juan", "C-001", "Calle Villanueva");
-    Cliente c2 = new Cliente("Ximena", "C-002", "Jiron Cusco");
+    Cliente c1 = new Cliente("Juan", "C-001", "Calle Villanueva", cuenta1);
+    Cliente c2 = new Cliente("Ximena", "C-002", "Jiron Cusco", cuenta2);
 
     // Crear Empleados 
     Empleado e1 = new Empleado("Maria", "E-001", "Avenida Salomon");
@@ -240,6 +245,7 @@ public class FrmLogin extends javax.swing.JFrame {
     UsuarioCliente uc1 = new UsuarioCliente("juan", "1234", c1);
     UsuarioCliente uc2 = new UsuarioCliente("ximena", "1234", c2);
 
+    
     // --- Registrar Usuarios en el Gestor ---
     gestor.registrarUsuario(admin);
     gestor.registrarUsuario(ue1);
