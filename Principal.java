@@ -7,10 +7,10 @@ public class Principal {
         Banco banco = new Banco();
         GestorUsuarios gestor = new GestorUsuarios();
 
-        // 🔹 Inicializar datos base del sistema
+        // Inicializar datos base del sistema
         inicializarDatos(banco, gestor);
 
-        // 🔹 Iniciar el menú principal
+        // Iniciar el menú principal
         menuPrincipal(sc, banco, gestor);
     }
 
