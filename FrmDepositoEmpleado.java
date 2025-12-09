@@ -156,7 +156,7 @@ public class FrmDepositoEmpleado extends javax.swing.JFrame {
 
             // Responsable: El EMPLEADO (Ventanilla)
             // Usamos 'this.empleado' que es la variable de esta clase
-            String responsable = (this.empleado != null) ? this.empleado.getNombreUsuario() : "Ventanilla";
+            String responsable = (this.empleado != null) ? this.empleado.getIdEmpleado() : "Ventanilla";
 
             boolean exito = logica.realizarDeposito(idCuenta, monto, responsable);
 

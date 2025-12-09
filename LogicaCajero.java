@@ -8,9 +8,9 @@ public class LogicaCajero {
     // DEPÓSITO
     public boolean realizarDeposito(String idCuenta, double monto, String responsable) {
 
-        String sqlUpdate = "UPDATE cuentas SET saldo = saldo + ? WHERE id_cuenta = ?";
-
-        String sqlInsert = "INSERT INTO transacciones (id_cuenta, tipo, monto, responsable, fecha) VALUES (?, 'Deposito', ?, ?, NOW())";
+        String sqlUpdate = "UPDATE cuenta SET saldo = saldo + ? WHERE id_cuenta = ?";
+        
+        String sqlInsert = "INSERT INTO transaccion (id_transaccion,id_cliente,id_cuenta,responsable,monto,tipo,fecha) VALUES (?, ?,?, ?, 1000,?, NOW())";
 
         return ejecutarTransaccion(sqlUpdate, sqlInsert, idCuenta, monto, responsable);
     }
@@ -32,8 +32,8 @@ public class LogicaCajero {
         }
 
         // 2. Restar saldo y registrar
-        String sqlUpdate = "UPDATE cuentas SET saldo = saldo - ? WHERE id_cuenta = ?";
-        String sqlInsert = "INSERT INTO transacciones (id_cuenta, tipo, monto, responsable, fecha) VALUES (?, 'Retiro', ?, ?, NOW())";
+        String sqlUpdate = "UPDATE cuenta SET saldo = saldo - ? WHERE id_cuenta = ?";
+        String sqlInsert = "INSERT INTO transaccion (id_cuenta, tipo, monto, responsable, fecha) VALUES (?, 'Retiro', ?, ?, NOW())";
 
         return ejecutarTransaccion(sqlUpdate, sqlInsert, idCuenta, monto, responsable);
     }
@@ -97,7 +97,7 @@ public class LogicaCajero {
         try {
             con = Conexion.getConexion(); 
             if (con != null) {
-                String sql = "SELECT saldo FROM cuentas WHERE id_cuenta = ?";
+                String sql = "SELECT saldo FROM cuenta WHERE id_cuenta = ?";
                 ps = con.prepareStatement(sql);
                 ps.setString(1, idCuenta);
                 rs = ps.executeQuery();
